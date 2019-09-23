@@ -1,0 +1,8 @@
+<div class="col-md-3 offset-md-4  mt-4 mb-4">
+        <h3 class="text-center">Add user</h3>
+        <form #task='ngForm' (ngSubmit)='sendTask(task)'>
+            <input type="hidden" name="id"   #id='ngModel' [(ngModel)]='taskservice.selectedTask.id'>
+            <input type="text" class="form-control  mt-4" name="taskname" #taskname='ngModel'  [(ngModel)]='taskservice.selectedTask.taskname' placeholder="Enter name" required minlength="3">
+            <button type="submit" class="btn-success mt-4 offset-md-3" [disabled]='task.invalid'>Submit</button>
+        </form>
+    </div>
