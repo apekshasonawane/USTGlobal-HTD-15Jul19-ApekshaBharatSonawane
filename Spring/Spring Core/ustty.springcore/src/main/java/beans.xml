@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <bean id="obj1" class="com.ustty.springcore.beans.HelloWorld"  >		<!-- autowire="byName"== byType search for type ,byName search for name & returns to property -->
+   	<property name="msg" value="Hello World!!!" />
+   		<property name="count" value="10"/>		<!-- property used for setters -->
+   		 <property name="animal" ref="human"/> 			<!-- instead of using value ref is used is called auto wiring --><!-- wiring through object ,REF is used for any bean/for objects-->
+   		<property name="map">
+   			<map>		<!-- for map we r using map it can be <list> which contains value/ref,array,set contains only one value-->
+   			<entry key="xyz" value="123"/>		<!-- In map we have given string and integer bcoz of that we r giving key n value like this if it is object the we use value-ref -->
+   			<entry key="abc" value="456"/>
+   			</map>		
+   		</property>
+   </bean>
+   <bean id="dog" class="com.ustty.springcore.beans.Dog" init-method="init" destroy-method="destroy"/>		<!-- we can give any name for init and destroy method but that name should match with value of init-method and destroy method resp. -->
+    <bean id="human" class="com.ustty.springcore.beans.Human"/>
+    <bean id="postProcessor" class="com.ustty.springcore.beans.PostProcessor"/>
+    <bean id="factoryPostProcessor" class="com.ustty.springcore.beans.FactoryPostProcessor"/>
+ 
+   <bean id="pet" class="com.ustty.springcore.beans.Pet" autowire="constructor">		<!-- contructor autowire search for type n use constructor -->
+   		<constructor-arg name="name" value="Judo"/>		<!-- auto wiring through constructor -->
+   	 	<constructor-arg name="animal" ref="dog"/>
+  
+   </bean>
+</beans>
